@@ -9,7 +9,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", async (req, res) => {
- 
+  const url = `https://api.hubspot.com/crm/v3/objects/2-222070893?properties=name,model,price`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${process.env.PRIVATE_APP_ACCESS}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    const records = response.data.results;
+    console.log("records", records);
+    res.render("homepage", { records });
+  } catch (error) {
+    console.error("Error fetching custom object:", error.message);
+    res.send("Error retrieving records");
+  }
 });
 
 app.get("/update-cobj", (req, res) => {
