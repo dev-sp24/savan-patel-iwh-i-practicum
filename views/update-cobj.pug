@@ -1,0 +1,21 @@
+//- ** This is a sample of a pug template and how it uses the data passed to it from index.js.
+
+doctype html
+html 
+    head 
+        title Add Custom Object
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body    
+        h1 Add Custom Object
+        form(action="/update-cobj" method="POST")
+            label(for="name") Mobile Name:
+            input(type="text" id="car_name" name="name" required)
+            br
+            label(for="model") Mobile Model:
+            input(type="text" id="model" name="model" required)
+            br
+            label(for="price") Mobile Price:
+            input(type="number" id="price" name="price" required)
+            br
+            button(type="submit") Submit
